@@ -93,15 +93,30 @@ snippet ns
 ## Input/Output
 # std::cout
 snippet cout
-	std::cout << ${1} << std::endl;
+	std::cout << "$1: " << ${1:x} << std::endl;
 # std::cin
 snippet cin
 	std::cin >> ${1};
+
+
+# ostream operator<<
+snippet ostream<<
+	ostream& operator<<(ostream& sm, ${1:vector}<${2:int}>& $1){
+		for (auto i : $1) {
+			sm << i << " ";
+		}
+		sm << endl;
+		return sm;
+	}
+
+
+
+
 ##
 ## Iteration
 # for i
 snippet fori
-	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+	for (unsigned int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
 		${4}
 	}
 
