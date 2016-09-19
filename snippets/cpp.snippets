@@ -70,14 +70,12 @@ snippet mu
 ## Class
 # class
 snippet cl
-	class ${1:`vim_snippets#Filename('$1', 'name')`}
-	{
+	class ${1:`vim_snippets#Filename('$1', 'name')`} {
 	public:
 		$1(${2});
 		~$1();
 
 	private:
-		${0:/* data */}
 	};
 # member function implementation
 snippet mfun
@@ -93,10 +91,24 @@ snippet ns
 ## Input/Output
 # std::cout
 snippet cout
+	std::cout << ${1} << std::endl;
+snippet cout1
+	std::cout << "${1}" << std::endl;
+snippet cout2
+	std::cout << ${1} << " ";
+snippet cout3
 	std::cout << "$1: " << ${1:x} << std::endl;
+snippet cout_vec
+	for (auto& ${1:i} : ${2:container}) {
+		std::cout << ${1} << " ";
+	}
+	std::cout << std::endl;
+
 # std::cin
 snippet cin
 	std::cin >> ${1};
+snippet cin1
+	std::cin.get();
 
 
 # ostream operator<<
@@ -109,21 +121,16 @@ snippet ostream<<
 		return sm;
 	}
 
-
-
-
 ##
 ## Iteration
 # for i
 snippet fori
 	for (unsigned int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
-		${4}
 	}
 
 # foreach
 snippet fore
 	for (${1:auto} ${2:i} : ${3:container}) {
-		${4}
 	}
 # iterator
 snippet iter
@@ -156,27 +163,25 @@ snippet rossub
 	ros::Subscriber ${1:sub} = ${2:n}.subscribe("${3}", 1000, ${4:Callback});
 
 	// Subscriber callback for node: $2
-	void $4(const ${5}& msg)
-	{
+	void $4(const ${5}& msg) {
 	}
 
 # Publisher
 snippet rospub
 	ros::Publisher ${1:pub} = ${2:n}.advertise<${4:std_msgs::String}>("${3}", 1000);
-	$4 msg;	
+	$4 msg;
 	$1.publish(msg);
 
 # Init
 snippet rosinit
-	ros::init(argc, argv, "${1:node_name}");	
+	ros::init(argc, argv, "${1:node_name}");
 	ros::NodeHandle ${2:n};
 
 # Service server
 snippet rossrv
-	ros::ServiceServer ${1:service} = ${2:n}.advertiseService("${3}", ${4:Callback});	
+	ros::ServiceServer ${1:service} = ${2:n}.advertiseService("${3}", ${4:Callback});
 
 	// Service callback for node: $2
-	bool $4(${5:pkg::srv}::Request& req, $5::Response& res)
-	{
+	bool $4(${5:pkg::srv}::Request& req, $5::Response& res) {
 		return true;
 	}
