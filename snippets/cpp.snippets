@@ -1,5 +1,11 @@
 extends c
 
+# header
+snippet header
+	#ifndef ${1:`vim_snippets#Filename('$1', 'name')`}_HPP
+	#define $1_HPP
+	#endif  // $1_HPP
+
 ## STL Collections
 # std::array
 snippet array
