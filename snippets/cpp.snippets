@@ -190,3 +190,26 @@ snippet rossrv
 	bool $4(${5:pkg::srv}::Request& req, $5::Response& res) {
 		return true;
 	}
+
+######################################
+#	GTEST - snippets
+######################################
+
+snippet gtest
+	#include <gtest/gtest.h>
+
+	class PhraseTest : public ::testing::Test {
+		protected:
+			virtual void SetUp() {
+			}
+			virtual void TearDown() {
+			}
+	};
+
+	TEST_F(PhraseTest, OperatorTest) {
+	}
+
+	int main(int argc, char *argv[]) {
+		testing::InitGoogleTest(&argc, argv);
+		return RUN_ALL_TESTS();
+	}
